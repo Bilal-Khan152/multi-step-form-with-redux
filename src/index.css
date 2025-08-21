@@ -1,0 +1,13 @@
+ @import "tailwindcss";
+
+
+
+ @theme {
+   --color-brand : #1e40af ;
+    
+}
+
+.main{
+  height: calc(100vh - 5vh + 10vh);
+
+}
