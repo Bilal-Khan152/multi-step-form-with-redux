@@ -27,18 +27,18 @@ const BusinessTab = () => {
 
   return (
     <>
-      <div className="px-6">
-        <h3 className="px-5 py-[60px] text-brand">
+      <div className="">
+        <h3 className=" font-[400] text-brand">
           The Agreed power of my provision is:
         </h3>
 
-        <div className="flex px-5 gap-5 mt-[-40px]">
+        <div className="flex flex-wrap gap-4 mt-[15px]">
           <button
             onClick={() => handleAnswer("provision", "Up to 25kVa (C-21)")}
-            className={`px-6 py-2 rounded-md font-[350] min-w-[280px] whitespace-nowrap ${
+            className={`cursor-pointer font-[400] px-4 py-2 rounded-md    whitespace-nowrap border-[1px] border-gray-200 ${
               provision === "Up to 25kVa (C-21)"
                 ? "bg-green-800 text-white"
-                : "bg-gray-100 text-brand"
+                : "bg-light text-brand"
             }`}
           >
             Up to 25kVa (C-21)
@@ -48,10 +48,10 @@ const BusinessTab = () => {
             onClick={() =>
               handleAnswer("provision", "From 25 to 250kVa (C-22)")
             }
-            className={`px-6 py-2 rounded-md font-[350] min-w-[280px] whitespace-nowrap ${
+            className={`cursor-pointer px-4 py-2 rounded-md font-[400]  whitespace-nowrap border-[1px] border-gray-200  ${
               provision === "From 25 to 250kVa (C-22)"
                 ? "bg-green-800 text-white"
-                : "bg-gray-100 text-brand"
+                : "bg-light text-brand"
             }`}
           >
             From 25 to 250kVa (C-22)
@@ -61,30 +61,32 @@ const BusinessTab = () => {
             onClick={() =>
               handleAnswer("provision", "Regardless of power & Night (C-23)")
             }
-            className={`px-6 py-2 rounded-md font-[350] min-w-[280px] whitespace-nowrap ${
+            className={` cursor-pointer px-4 py-2 rounded-md font-[400]  border-[1px] border-gray-200  whitespace-nowrap ${
               provision === "Regardless of power & Night (C-23)"
                 ? "bg-green-800 text-white"
-                : "bg-gray-100 text-brand"
+                : "bg-light text-brand"
             }`}
           >
-            Regardless of power & Night (C-23)
+            Regardless of power <br className="block sm:hidden "/> & Night (C-23)
           </button>
         </div>
       </div>
-      <div className="flex justify-between mt-[40px]">
+      <div className="flex flex-wrap justify-between items-center gap-4 mt-[75px] mb-[90px]">
         <button
           onClick={() => navigate("/")}
-          className="text-[14px] mt-10 ms-[50px] px-8 py-2 border border-brand text-brand rounded-md flex items-center gap-2"
+          className="w-full sm:w-auto min-w-[120px] text-[14px] px-5 py-2 cursor-pointer border border-brand text-brand rounded-md flex items-center justify-center gap-2"
         >
           <ChevronLeft size={15} /> Previous
         </button>
+      
         <button
           onClick={() => navigate("/second-form")}
-          className="text-[14px] mt-10 me-[30px] px-8 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md flex items-center gap-2"
+          className="w-full sm:w-auto min-w-[120px] text-[14px] px-7 py-2 cursor-pointer bg-brand hover:bg-brand text-white rounded-md flex items-center justify-center gap-2"
         >
           Next <ChevronRight size={15} />
         </button>
       </div>
+      
     </>
   );
 };

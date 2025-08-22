@@ -13,6 +13,13 @@ const initialalState = {
   package: {
     packageType: null,
   },
+  warrantyCalculation: {
+    previousSupplierWarranty: "",
+    agreedSupplyPower: "",
+  },
+  emailVerification: {
+    email: null,
+  },
 };
 
 function formReducer(state = initialalState, action) {
@@ -34,7 +41,7 @@ function formReducer(state = initialalState, action) {
         ...state,
         propertyPage: {
           ...state.propertyPage,
-          interestType: "home",
+
           homeDetails: {
             ...state.propertyPage.homeDetails,
             ...action.payload,
@@ -49,7 +56,7 @@ function formReducer(state = initialalState, action) {
         ...state,
         propertyPage: {
           ...state.propertyPage,
-          interestType: "business",
+   
           homeDetails: {},
           businessDetails: {
             ...state.propertyPage.businessDetails,
@@ -64,7 +71,7 @@ function formReducer(state = initialalState, action) {
         ...state,
         propertyPage: {
           ...state.propertyPage,
-          interestType: "apartment",
+        
           homeDetails: {},
           businessDetails: {},
           apartmentDetails: {
@@ -80,6 +87,23 @@ function formReducer(state = initialalState, action) {
         package: { ...state.package, ...action.payload },
       };
 
+    case "setWarrantyDetails":
+      return {
+        ...state,
+        warrantyCalculation: {
+          ...state.warrantyCalculation,
+          ...action.payload,
+        },
+      };
+
+    case "setEmail":
+      return {
+        ...state,
+        emailVerification: {
+          ...state.emailVerification,
+          ...action.payload,
+        },
+      };
     default:
       return state;
   }

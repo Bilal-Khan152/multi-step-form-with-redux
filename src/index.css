@@ -4,10 +4,9 @@
 
  @theme {
    --color-brand : #1e40af ;
-    
+  --bg-light: #f9fafb ;   
 }
 
-.main{
-  height: calc(100vh - 5vh + 10vh);
-
+ .bg-light {
+  background-color: var(--bg-light);
 }

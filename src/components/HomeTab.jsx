@@ -12,9 +12,7 @@ const HomeTab = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const savedData = useSelector(
-    (state) => state.propertyPage.homeDetails
-  );
+  const savedData = useSelector((state) => state.propertyPage.homeDetails);
 
   useEffect(() => {
     if (savedData) {
@@ -40,25 +38,25 @@ const HomeTab = () => {
 
   return (
     <>
-      <div className="p-6">
-        <h3 className="px-5 py-[60px] text-brand">Already a customer?</h3>
-        <div className="flex px-5 gap-5 mt-[-40px]">
+      <div>
+        <h3 className="text-brand font-[400]">Already a customer?</h3>
+        <div className="flex gap-5 mt-[15px]">
           <button
             onClick={() => handleAnswer("alreadyCustomer", "yes")}
-            className={`px-6 py-2 rounded-md font-[350] ${
+            className={`cursor-pointer px-6 py-2 rounded-md border-[1px] border-gray-200 font-[400] ${
               alreadyCustomer === "yes"
                 ? "bg-green-800 text-white"
-                : "bg-gray-100 text-brand"
+                : "bg-light text-brand"
             }`}
           >
             Yes
           </button>
           <button
             onClick={() => handleAnswer("alreadyCustomer", "no")}
-            className={`px-6 py-2 rounded-md font-[350] ${
+            className={`cursor-pointer px-6 py-2 rounded-md font-[400] border-[1px] border-gray-200 ${
               alreadyCustomer === "no"
                 ? "bg-green-800 text-white"
-                : "bg-gray-100 text-brand"
+                : "bg-light text-brand"
             }`}
           >
             No
@@ -66,27 +64,27 @@ const HomeTab = () => {
         </div>
       </div>
 
-      <div className="p-6">
-        <h3 className="px-5 py-[60px] text-brand">
+      <div className="mt-[75px]">
+        <h3 className="font-[400] text-brand">
           Interested in a second power supply?
         </h3>
-        <div className="flex px-5 gap-5 mt-[-40px]">
+        <div className="flex  gap-5 mt-[15px]">
           <button
             onClick={() => handleAnswer("isInterestedInPowerSupply", "yes")}
-            className={`px-6 py-2 rounded-md ${
+            className={`cursor-pointer px-6 py-2 rounded-md font-[400] border-[1px] border-gray-200 ${
               isInterestedInPowerSupply === "yes"
                 ? "bg-green-800 text-white"
-                : "bg-gray-100 text-brand"
+                : "bg-light text-brand"
             }`}
           >
             Yes
           </button>
           <button
             onClick={() => handleAnswer("isInterestedInPowerSupply", "no")}
-            className={`px-6 py-2 rounded-md ${
+            className={`cursor-pointer px-6 py-2 rounded-md font-[400] border-[1px] border-gray-200 ${
               isInterestedInPowerSupply === "no"
                 ? "bg-green-800 text-white"
-                : "bg-gray-100 text-brand"
+                : "bg-light text-brand"
             }`}
           >
             No
@@ -94,18 +92,18 @@ const HomeTab = () => {
         </div>
       </div>
 
-      <div className="p-6">
-        <h3 className="px-5 py-[60px] text-brand">I'm interested in:</h3>
-        <div className="flex px-5 gap-5 mt-[-40px]">
+      <div className="mt-[75px]">
+        <h3 className="font-[400] text-brand">I'm interested in:</h3>
+        <div className="flex flex-wrap  gap-5 mt-[15px]">
           {["Change provider", "New connection", "Re-Electrification"].map(
             (option) => (
               <button
                 key={option}
                 onClick={() => handleAnswer("inWhichServiceInterested", option)}
-                className={`px-6 py-2 rounded-md ${
+                className={`cursor-pointer px-6 py-2 rounded-md font-[400] border-[1px] border-gray-200 ${
                   inWhichServiceInterested === option
                     ? "bg-green-800 text-white"
-                    : "bg-gray-100 text-brand"
+                    : "bg-light text-brand"
                 }`}
               >
                 {option}
@@ -115,17 +113,17 @@ const HomeTab = () => {
         </div>
       </div>
 
-      <div className="p-6">
-        <h3 className="px-5 py-[60px] text-brand">Counter type?</h3>
-        <div className="flex px-5 gap-5 mt-[-40px]">
+      <div className="mt-[75px]">
+        <h3 className="font-[400] text-brand">Counter type?</h3>
+        <div className="flex  gap-5 mt-[15px]">
           {["Daily", "Nocturnal"].map((option) => (
             <button
               key={option}
               onClick={() => handleAnswer("whichCounter", option)}
-              className={`px-6 py-2 rounded-md ${
+              className={`cursor-pointer px-6 py-2 rounded-md font-[400] border-[1px] border-gray-200 ${
                 whichCounter === option
                   ? "bg-green-800 text-white"
-                  : "bg-gray-100 text-brand"
+                  : "bg-light text-brand"
               }`}
             >
               {option}
@@ -134,16 +132,17 @@ const HomeTab = () => {
         </div>
       </div>
 
-      <div className="flex justify-between">
+      <div className="flex flex-wrap justify-between items-center gap-4 mt-[75px] mb-[90px]">
         <button
           onClick={() => navigate("/")}
-          className="text-[14px] mt-10 ms-[50px] px-8 py-2 border border-brand text-brand rounded-md flex items-center gap-2"
+          className="w-full sm:w-auto min-w-[120px] text-[14px] px-5 py-2 cursor-pointer border border-brand text-brand rounded-md flex items-center justify-center gap-2"
         >
           <ChevronLeft size={15} /> Previous
         </button>
+
         <button
           onClick={() => navigate("/second-form")}
-          className="text-[14px] mt-10 me-[30px] px-8 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md flex items-center gap-2"
+          className="w-full sm:w-auto min-w-[120px] text-[14px] px-7 py-2 cursor-pointer bg-brand hover:bg-brand text-white rounded-md flex items-center justify-center gap-2"
         >
           Next <ChevronRight size={15} />
         </button>

@@ -2,26 +2,29 @@ import React from "react";
 import left_footer from "../assets/left_footer.png";
 import right_footer from "../assets/right_footer.png";
 import middle_footer_2 from "../assets/middle_footer_2.png";
+import middle_footer_1 from "../assets/middle_footer_1.png";
+
 
 const Footer = () => {
   return (
-    <div className="flex justify-between w-full   border-2 border-t-brand pb-4">
-      <div className="">
-        <img src={left_footer} alt="" />
+    <div className="flex justify-between  w-full items-center flex-col md:flex-row 2xl:items-start  border-t-[1px] border-t-brand py-2 md:pb-4">
+      <div className="md:block hidden">
+        <img src={left_footer}  className=" w-[250px] lg:w-[300px] xl:w-[350px] 2xl:w-full" alt="" />
       </div>
 
-      <div className="">
-        <img className="mx-auto mt-[-20px] h-16" src={middle_footer_2} alt="" />
-        <p className="text-brand text-xs text-center">Contact</p>
-        <p className="text-brand text-xs text-center mt-3">Privacy</p>
-        <p className="text-brand text-xs text-center mt-3">
+      <div className="relative">
+        <img className="mx-auto mt-[-32px] h-16 2xl:block hidden  " src={middle_footer_2} alt="" />
+        <img src={middle_footer_1} className=" absolute top-[-15px] right-[194px] mx-auto mt-[-20px] h-16 2xl:block hidden" alt="" />
+        <p className="text-brand text-xs text-center 2xl:mt-0 cursor-pointer">Contact</p>
+        <p className="text-brand text-xs text-center mt-3 cursor-pointer">Privacy</p>
+        <p className="text-brand text-xs text-center mt-3 cursor-pointer">
           Copyright 2020 volton.gr | All Rights Reserved | Competent Regulatory
           Authority RAE
         </p>
       </div>
 
-      <div>
-        <img src={right_footer} alt="" />
+      <div className="md:block hidden">
+        <img className="w-[250px] lg:w-[300px] xl:w-[350px] 2xl:w-full" src={right_footer} alt="" />
       </div>
     </div>
   );

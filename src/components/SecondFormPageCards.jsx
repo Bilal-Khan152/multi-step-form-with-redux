@@ -3,9 +3,13 @@ import { Grid3X3, ExternalLink } from "lucide-react";
 
 const SecondFormPageCards = ({ imgSrc, title, desc, isSelected, onSelect }) => {
   return (
-    <div className="border-[1px] border-gray-300 w-[35%] rounded-xl">
-      <div>
-        <img src={imgSrc} alt="" />
+    <div
+      className="border-[1px] border-gray-300 rounded-xl 
+                flex-shrink-0 flex-grow-0
+                w-full sm:w-[48%] lg:w-[30%]"
+    >
+      <div className="">
+        <img src={imgSrc} alt="" className="rounded-t-xl  " />
       </div>
 
       <div className="p-5">

@@ -23,13 +23,13 @@ const Property = () => {
 
   return (
     <div className=" w-full">
-      <ProgressIndicators />
+    
 
-      <div className=" w-[60%] mx-auto h-[180vh]">
+      <div className=" w-[60%] mx-auto ">
         <div>
-          <p className="px-14 py-[60px] text-brand">I'm interested in:</p>
-
-          <div className="flex mt-[-20px] justify-center gap-[25px]">
+          <p className="px-4 py-[60px] text-brand">I'm interested in:</p>
+ 
+          <div className="flex flex-wrap justify-center gap-4 md:gap-[28px] mt-[-20px]">
             <div onClick={() => handlePropertyTabClick("home")}>
               <PropertyTab
                 title="Home"

@@ -24,8 +24,8 @@ const Package = () => {
 
   return (
     <div className="w-full ">
-      <ProgressIndicators />
-      <div className=" w-[60%]   mx-auto h-[180vh]">
+   
+      <div className=" w-[60%]   mx-auto ">
         <div className="bg-white p-6">
           <div className="max-w-6xl mx-auto">
             <div className="mb-2 ms-[20px]">
@@ -34,7 +34,7 @@ const Package = () => {
               </div>
             </div>
 
-            <div className="flex items-center justify-between">
+            <div className="flex flex-wrap items-center justify-between">
               <div>
                 <h2 className="text-brand text-xl font-medium mb-3">
                   Choose the package that suits you
@@ -42,13 +42,13 @@ const Package = () => {
                 <p className=" text-brand">Read the general conditions here</p>
               </div>
 
-              <div className="flex items-center gap-4">
+              <div className="flex flex-wrap items-center gap-14">
                 <div className="flex gap-2">
                   <div className="w-2 h-2 bg-brand rounded-full"></div>
                   <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
                 </div>
 
-                <div className="flex gap-2">
+                <div className="flex gap-4">
                   <button className="w-8 h-8  border-2 border-blue-600 rounded-full flex items-center justify-center text-blue-600 hover:bg-blue-50 transition-colors">
                     <ChevronLeft size={15} className="w-5 h-5" />
                   </button>
@@ -61,7 +61,7 @@ const Package = () => {
           </div>
         </div>
 
-        <div className="flex gap-6">
+        <div className=" px-5 flex flex-wrap gap-4 justify-center ">
           <SecondFormPageCards
             imgSrc={day_home_flexi_plus}
             title="Volton Unique Flexi Plus"
@@ -84,20 +84,21 @@ const Package = () => {
             onSelect={() => handleSelect("Volton Unique Flexi")}
           />
         </div>
-        <div className="flex justify-between  mt-[50px]  ">
-          <button
-            onClick={() => navigate("/first-form")}
-            className="text-[14px]   px-8 py-2 border border-brand text-brand rounded-md flex items-center gap-2"
-          >
-            <ChevronLeft size={15} /> Previous
-          </button>
-          <button
-            onClick={() => navigate("/second-form")}
-            className="text-[14px]   px-8 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md flex items-center gap-2"
-          >
-            Next <ChevronRight size={15} />
-          </button>
-        </div>
+       <div className="flex flex-wrap justify-between items-center gap-4 mt-[75px] mb-[90px]">
+               <button
+                 onClick={() => navigate("/")}
+                 className="w-full sm:w-auto min-w-[120px] text-[14px] px-5 py-2 cursor-pointer border border-brand text-brand rounded-md flex items-center justify-center gap-2"
+               >
+                 <ChevronLeft size={15} /> Previous
+               </button>
+       
+               <button
+                 onClick={() => navigate("/third-form")}
+                 className="w-full sm:w-auto min-w-[120px] text-[14px] px-7 py-2 cursor-pointer bg-brand hover:bg-brand text-white rounded-md flex items-center justify-center gap-2"
+               >
+                 Next <ChevronRight size={15} />
+               </button>
+             </div>
       </div>
     </div>
   );
