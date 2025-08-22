@@ -4,6 +4,7 @@ import { Info, ChevronLeft, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import DocumentSection from "../components/DocumentSection";
+import { ROUTES } from "../constant/route";
 
 const WarrantyCalculation = () => {
   const [activeSection, setActiveSection] = useState("form");
@@ -23,7 +24,7 @@ const WarrantyCalculation = () => {
 
   return (
     <div className="w-full">
-      <div className=" w-[80%] ms-[55px] mt-[40px] ">
+      <div className=" w-[80%]  ms-[10px] sm:ms-[55px] mt-[40px] ">
         {activeSection == "form" ? (
           <>
             <div className=" w-full xl:w-[50%] mx-auto">
@@ -43,7 +44,7 @@ const WarrantyCalculation = () => {
                 <p className=" text-brand font-[400] text-md">
                   Prevoius Supplier Warrant
                 </p>
-                <Info size={20} className="text-green-800 ms-[100px]" />
+                <Info size={20} className="text-dark ms-[100px]" />
               </div>
 
               <div className="flex flex-col w-24 mt-[40px]">
@@ -68,7 +69,7 @@ const WarrantyCalculation = () => {
                 <p className=" text-brand font-[400] text-md">
                   Agreed supply power
                 </p>
-                <Info size={20} className="text-green-800 ms-[70px]" />
+                <Info size={20} className="text-dark ms-[70px]" />
               </div>
 
               <div className="flex flex-col w-24 mt-[40px]">
@@ -112,24 +113,24 @@ const WarrantyCalculation = () => {
               </div>
               <div className=" w-[55vw] flex flex-wrap justify-between items-center gap-4 mt-[75px] mb-[90px]">
                 <button
-                  onClick={() => navigate("/second-form")}
+                  onClick={() => navigate(ROUTES.APPLICATION.PACKAGE)}
                   className="w-full sm:w-auto min-w-[120px] text-[14px] px-5 py-2 cursor-pointer border border-brand text-brand rounded-md flex items-center justify-center gap-2"
                 >
                   <ChevronLeft size={15} /> Previous
                 </button>
 
-                <buttonz
+                <button
                   onClick={() => setActiveSection("document")}
                   className="w-full sm:w-auto min-w-[120px] text-[14px] px-7 py-2 cursor-pointer bg-brand hover:bg-brand text-white rounded-md flex items-center justify-center gap-2"
                 >
                   Next <ChevronRight size={15} />
-                </buttonz>
+                </button>
               </div>
             </div>
           </>
         ) : null}
 
-        <div className="w-[60%] ms-[330px]  ">
+        <div className="lg:w-[60%] sm:w-[100%] w-[120%] ms-0 xl:ms-[330px]  ">
           {activeSection == "document" ? (
             <>
               <div className="mt-[60px] ">
@@ -144,14 +145,14 @@ const WarrantyCalculation = () => {
           {activeSection == "document" ? (
             <div className="flex flex-wrap justify-between items-center gap-4 mt-[75px] mb-[90px]">
               <button
-                onClick={() => navigate("/")}
+                onClick={() => setActiveSection("form")}
                 className="w-full sm:w-auto min-w-[120px] text-[14px] px-5 py-2 cursor-pointer border border-brand text-brand rounded-md flex items-center justify-center gap-2"
               >
                 <ChevronLeft size={15} /> Previous
               </button>
 
               <button
-                onClick={() => navigate("/forth-form")}
+                onClick={() => navigate(ROUTES.APPLICATION.EMAILVERIFICATION)}
                 className="w-full sm:w-auto min-w-[120px] text-[14px] px-7 py-2 cursor-pointer bg-brand hover:bg-brand text-white rounded-md flex items-center justify-center gap-2"
               >
                 Next <ChevronRight size={15} />

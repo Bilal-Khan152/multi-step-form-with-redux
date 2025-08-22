@@ -7,6 +7,8 @@ import day_home_flexi_plus from "../assets/day_home_flexi_plus.png";
 import day_home_flexi from "../assets/day_home_flexi.png";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../constant/route";
+
 
 const Package = () => {
   const selectedPackage = useSelector((state) => state.package.packageType);
@@ -24,25 +26,24 @@ const Package = () => {
 
   return (
     <div className="w-full ">
-   
-      <div className=" w-[60%]   mx-auto ">
+      <div className=" w-[60%] mx-auto ">
         <div className="bg-white p-6">
           <div className="max-w-6xl mx-auto">
-            <div className="mb-2 ms-[20px]">
-              <div className="inline-block bg-blue-100 px-18 py-3 rounded-md">
+            <div className="mb-2 ms-0 md:ms-[20px]">
+              <div className="inline-block bg-blue-100  px-18 py-3 rounded-md">
                 <span className="text-brand font-medium">Daily</span>
               </div>
             </div>
 
             <div className="flex flex-wrap items-center justify-between">
               <div>
-                <h2 className="text-brand text-xl font-medium mb-3">
+                <h2 className="text-brand text-md md:text-xl font-medium mb-3">
                   Choose the package that suits you
                 </h2>
                 <p className=" text-brand">Read the general conditions here</p>
               </div>
 
-              <div className="flex flex-wrap items-center gap-14">
+              <div className="flex  items-center gap-14 mt-10 lg:mt-0">
                 <div className="flex gap-2">
                   <div className="w-2 h-2 bg-brand rounded-full"></div>
                   <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
@@ -57,15 +58,16 @@ const Package = () => {
                   </button>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
 
-        <div className=" px-5 flex flex-wrap gap-4 justify-center ">
+        <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 px-4 gap-4  ">
           <SecondFormPageCards
             imgSrc={day_home_flexi_plus}
             title="Volton Unique Flexi Plus"
-            desc="Secure the lowestkilowatt-hour price on the energy market"
+            desc="Secure the lowest kilowatt-hour price on the energy market"
             isSelected={selectedPackage === "Volton Unique Flexi Plus"}
             onSelect={() => handleSelect("Volton Unique Flexi Plus")}
           />
@@ -84,21 +86,22 @@ const Package = () => {
             onSelect={() => handleSelect("Volton Unique Flexi")}
           />
         </div>
-       <div className="flex flex-wrap justify-between items-center gap-4 mt-[75px] mb-[90px]">
-               <button
-                 onClick={() => navigate("/")}
-                 className="w-full sm:w-auto min-w-[120px] text-[14px] px-5 py-2 cursor-pointer border border-brand text-brand rounded-md flex items-center justify-center gap-2"
-               >
-                 <ChevronLeft size={15} /> Previous
-               </button>
-       
-               <button
-                 onClick={() => navigate("/third-form")}
-                 className="w-full sm:w-auto min-w-[120px] text-[14px] px-7 py-2 cursor-pointer bg-brand hover:bg-brand text-white rounded-md flex items-center justify-center gap-2"
-               >
-                 Next <ChevronRight size={15} />
-               </button>
-             </div>
+
+        <div className="flex flex-wrap justify-between items-center gap-4 mt-[75px] mb-[90px]">
+          <button
+            onClick={() => navigate(ROUTES.APPLICATION.PROPERTY)}
+            className="w-full sm:w-auto min-w-[120px] text-[14px] px-5 py-2 cursor-pointer border border-brand text-brand rounded-md flex items-center justify-center gap-2"
+          >
+            <ChevronLeft size={15} /> Previous
+          </button>
+
+          <button
+            onClick={() => navigate(ROUTES.APPLICATION.WARRANTY)}
+            className="w-full sm:w-auto min-w-[120px] text-[14px] px-7 py-2 cursor-pointer bg-brand hover:bg-brand text-white rounded-md flex items-center justify-center gap-2"
+          >
+            Next <ChevronRight size={15} />
+          </button>
+        </div>
       </div>
     </div>
   );

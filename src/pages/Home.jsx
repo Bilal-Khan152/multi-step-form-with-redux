@@ -6,9 +6,11 @@ import { ChevronRight } from "lucide-react";
 import Resource from "../components/Resource";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../constant/route";
 
 const Home = () => {
-  const selectedResource = useSelector((state) => state.homePage.resourceType);
+  const selectedResource = useSelector((state) => state.resource.resourceType);
+ 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -48,7 +50,7 @@ const Home = () => {
       </div>
 
       <button
-        onClick={() => navigate("/first-form")}
+        onClick={() => navigate(ROUTES.APPLICATION.PROPERTY)}
         disabled={!selectedResource}
         className={`mt-8 md:mt-10 px-6 md:px-8 py-2 rounded-md flex items-center gap-2 transition-colors
     mx-auto md:mx-0 md:ms-[630px]

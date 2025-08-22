@@ -1,10 +1,10 @@
 import { createStore } from "redux";
 
 const initialalState = {
-  homePage: {
+  resource: {
     resourceType: null,
   },
-  propertyPage: {
+  property: {
     propertyType: null,
     homeDetails: {},
     businessDetails: {},
@@ -27,23 +27,23 @@ function formReducer(state = initialalState, action) {
     case "setResourceType":
       return {
         ...state,
-        homePage: { ...state.homePage, ...action.payload },
+        resource: { ...state.resource, ...action.payload },
       };
 
     case "setPropertyType":
       return {
         ...state,
-        propertyPage: { ...state.propertyPage, propertyType: action.payload },
+        property: { ...state.property, propertyType: action.payload },
       };
 
     case "setHomeDetails":
       return {
         ...state,
-        propertyPage: {
-          ...state.propertyPage,
+        property: {
+          ...state.property,
 
           homeDetails: {
-            ...state.propertyPage.homeDetails,
+            ...state.property.homeDetails,
             ...action.payload,
           },
           businessDetails: {},
@@ -54,12 +54,12 @@ function formReducer(state = initialalState, action) {
     case "setBusinessDetails":
       return {
         ...state,
-        propertyPage: {
-          ...state.propertyPage,
-   
+        property: {
+          ...state.property,
+
           homeDetails: {},
           businessDetails: {
-            ...state.propertyPage.businessDetails,
+            ...state.property.businessDetails,
             ...action.payload,
           },
           apartmentDetails: {},
@@ -69,14 +69,14 @@ function formReducer(state = initialalState, action) {
     case "setApartmentDetails":
       return {
         ...state,
-        propertyPage: {
-          ...state.propertyPage,
-        
+        property: {
+          ...state.property,
+
           homeDetails: {},
           businessDetails: {},
           apartmentDetails: {
-            ...state.propertyPage.apartmentDetails, // keep previous answers
-            ...action.payload, // merge new ones
+            ...state.property.apartmentDetails,
+            ...action.payload,
           },
         },
       };

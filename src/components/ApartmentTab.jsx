@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../constant/route";
 
 const ApartmentTab = () => {
   const [alreadyCustomer, setAlreadyCustomer] = useState("");
@@ -10,7 +11,7 @@ const ApartmentTab = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const savedData = useSelector((state) => state.propertyPage.apartmentDetails);
+  const savedData = useSelector((state) => state.property.apartmentDetails);
 
   useEffect(() => {
     if (savedData) {
@@ -39,7 +40,7 @@ const ApartmentTab = () => {
           onClick={() => handleAnswer("alreadyCustomer", "yes")}
           className={`cursor-pointer px-6 py-2 rounded-md font-[400] border-[1px] border-gray-200 ${
             alreadyCustomer === "yes"
-              ? "bg-green-800 text-white"
+              ? "bg-dark text-white"
               : "bg-light text-brand"
           }`}
         >
@@ -49,7 +50,7 @@ const ApartmentTab = () => {
           onClick={() => handleAnswer("alreadyCustomer", "no")}
           className={`cursor-pointer px-6 py-2 rounded-md font-[400] border-[1px] border-gray-200 ${
             alreadyCustomer === "no"
-              ? "bg-green-800 text-white"
+              ? "bg-dark text-white"
               : "bg-light text-brand"
           }`}
         >
@@ -68,7 +69,7 @@ const ApartmentTab = () => {
               onClick={() => handleAnswer("inWhichServiceInterested", option)}
               className={`cursor-pointer px-4 py-2 rounded-md font-[400] border-[1px] border-gray-200 whitespace-nowrap ${
                 inWhichServiceInterested === option
-                  ? "bg-green-800 text-white"
+                  ? "bg-dark text-white"
                   : "bg-light text-brand"
               }`}
             >
@@ -86,7 +87,7 @@ const ApartmentTab = () => {
         </button>
 
         <button
-          onClick={() => navigate("/second-form")}
+          onClick={() => navigate(ROUTES.APPLICATION.PACKAGE)}
           className="w-full sm:w-auto min-w-[120px] text-[14px] px-7 py-2 cursor-pointer bg-brand hover:bg-brand text-white rounded-md flex items-center justify-center gap-2"
         >
           Next <ChevronRight size={15} />

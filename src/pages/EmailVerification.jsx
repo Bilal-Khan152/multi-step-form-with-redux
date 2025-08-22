@@ -4,6 +4,7 @@ import { ChevronRight, ChevronLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { ROUTES } from "../constant/route";
 
 const EmailVerification = () => {
   const navigate = useNavigate();
@@ -57,7 +58,7 @@ const EmailVerification = () => {
             {/* Verification button */}
             <button
               onClick={() => handleSave(email)}
-              className="w-full bg-green-800 hover:bg-green-700 text-white font-medium py-2 px-6 rounded-md transition-colors"
+              className="w-full bg-dark hover:bg-dark text-white font-medium py-2 px-6 rounded-md transition-colors"
             >
               Verification
             </button>
@@ -67,14 +68,14 @@ const EmailVerification = () => {
 
       <div className="flex w-[55%] mx-auto  flex-wrap justify-between items-center gap-4 mt-[75px] mb-[90px]">
         <button
-          onClick={() => navigate("/")}
+          onClick={() => navigate(ROUTES.APPLICATION.WARRANTY)}
           className="w-full sm:w-auto min-w-[120px] text-[14px] px-5 py-2 cursor-pointer border border-brand text-brand rounded-md flex items-center justify-center gap-2"
         >
           <ChevronLeft size={15} /> Previous
         </button>
 
         <button
-          onClick={(handleNextBtn )}
+          onClick={handleNextBtn}
           className="w-full sm:w-auto min-w-[120px] text-[14px] px-7 py-2 cursor-pointer bg-brand hover:bg-brand text-white rounded-md flex items-center justify-center gap-2"
         >
           Next <ChevronRight size={15} />

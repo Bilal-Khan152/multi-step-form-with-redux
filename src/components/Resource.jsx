@@ -8,7 +8,7 @@ const Resource = ({ title, imgSrc, alt, selected, onSelect }) => {
       className="relative w-[180px] bg-light h-[180px] border rounded-md flex flex-col justify-center items-center gap-6 cursor-pointer transition border-gray-300"
     >
       {selected && (
-        <div className="absolute top-2 right-2 bg-green-800 w-6 h-6 rounded-full flex items-center justify-center">
+        <div className="absolute top-2 right-2 bg-dark w-6 h-6 rounded-full flex items-center justify-center">
           <Check size={16} className="text-white" />
         </div>
       )}

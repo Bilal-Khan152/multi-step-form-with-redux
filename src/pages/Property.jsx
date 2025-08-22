@@ -13,6 +13,9 @@ const Property = () => {
   const [selectedProperty, setSelectedProperty] = useState("home");
   const dispatch = useDispatch();
 
+
+  console.log("type" , selectedProperty)
+
   const handlePropertyTabClick = (type) => {
     setSelectedProperty(type);
     dispatch({
@@ -23,12 +26,10 @@ const Property = () => {
 
   return (
     <div className=" w-full">
-    
-
       <div className=" w-[60%] mx-auto ">
         <div>
           <p className="px-4 py-[60px] text-brand">I'm interested in:</p>
- 
+
           <div className="flex flex-wrap justify-center gap-4 md:gap-[28px] mt-[-20px]">
             <div onClick={() => handlePropertyTabClick("home")}>
               <PropertyTab

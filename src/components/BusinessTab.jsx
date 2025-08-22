@@ -2,14 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../constant/route";
 
 const BusinessTab = () => {
   const [provision, setProvision] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const savedData = useSelector((state) => state.propertyPage.businessDetails);
-
+  const savedData = useSelector((state) => state.property.businessDetails);
+    
   useEffect(() => {
     if (savedData) {
       setProvision(savedData.provision || "");
@@ -37,7 +38,7 @@ const BusinessTab = () => {
             onClick={() => handleAnswer("provision", "Up to 25kVa (C-21)")}
             className={`cursor-pointer font-[400] px-4 py-2 rounded-md    whitespace-nowrap border-[1px] border-gray-200 ${
               provision === "Up to 25kVa (C-21)"
-                ? "bg-green-800 text-white"
+                ? "bg-dark text-white"
                 : "bg-light text-brand"
             }`}
           >
@@ -50,7 +51,7 @@ const BusinessTab = () => {
             }
             className={`cursor-pointer px-4 py-2 rounded-md font-[400]  whitespace-nowrap border-[1px] border-gray-200  ${
               provision === "From 25 to 250kVa (C-22)"
-                ? "bg-green-800 text-white"
+                ? "bg-dark text-white"
                 : "bg-light text-brand"
             }`}
           >
@@ -63,7 +64,7 @@ const BusinessTab = () => {
             }
             className={` cursor-pointer px-4 py-2 rounded-md font-[400]  border-[1px] border-gray-200  whitespace-nowrap ${
               provision === "Regardless of power & Night (C-23)"
-                ? "bg-green-800 text-white"
+                ? "bg-dark text-white"
                 : "bg-light text-brand"
             }`}
           >
@@ -80,7 +81,7 @@ const BusinessTab = () => {
         </button>
       
         <button
-          onClick={() => navigate("/second-form")}
+          onClick={() => navigate(ROUTES.APPLICATION.PACKAGE)}
           className="w-full sm:w-auto min-w-[120px] text-[14px] px-7 py-2 cursor-pointer bg-brand hover:bg-brand text-white rounded-md flex items-center justify-center gap-2"
         >
           Next <ChevronRight size={15} />

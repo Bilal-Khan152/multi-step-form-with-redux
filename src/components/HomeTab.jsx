@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { ROUTES } from "../constant/route";
 
 const HomeTab = () => {
   const [alreadyCustomer, setAlreadyCustomer] = useState("");
@@ -12,7 +13,8 @@ const HomeTab = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const savedData = useSelector((state) => state.propertyPage.homeDetails);
+  const savedData = useSelector((state) => state.property.homeDetails);
+ 
 
   useEffect(() => {
     if (savedData) {
@@ -45,7 +47,7 @@ const HomeTab = () => {
             onClick={() => handleAnswer("alreadyCustomer", "yes")}
             className={`cursor-pointer px-6 py-2 rounded-md border-[1px] border-gray-200 font-[400] ${
               alreadyCustomer === "yes"
-                ? "bg-green-800 text-white"
+                ? "bg-dark text-white"
                 : "bg-light text-brand"
             }`}
           >
@@ -55,7 +57,7 @@ const HomeTab = () => {
             onClick={() => handleAnswer("alreadyCustomer", "no")}
             className={`cursor-pointer px-6 py-2 rounded-md font-[400] border-[1px] border-gray-200 ${
               alreadyCustomer === "no"
-                ? "bg-green-800 text-white"
+                ? "bg-dark text-white"
                 : "bg-light text-brand"
             }`}
           >
@@ -73,7 +75,7 @@ const HomeTab = () => {
             onClick={() => handleAnswer("isInterestedInPowerSupply", "yes")}
             className={`cursor-pointer px-6 py-2 rounded-md font-[400] border-[1px] border-gray-200 ${
               isInterestedInPowerSupply === "yes"
-                ? "bg-green-800 text-white"
+                ? "bg-dark text-white"
                 : "bg-light text-brand"
             }`}
           >
@@ -83,7 +85,7 @@ const HomeTab = () => {
             onClick={() => handleAnswer("isInterestedInPowerSupply", "no")}
             className={`cursor-pointer px-6 py-2 rounded-md font-[400] border-[1px] border-gray-200 ${
               isInterestedInPowerSupply === "no"
-                ? "bg-green-800 text-white"
+                ? "bg-dark text-white"
                 : "bg-light text-brand"
             }`}
           >
@@ -102,7 +104,7 @@ const HomeTab = () => {
                 onClick={() => handleAnswer("inWhichServiceInterested", option)}
                 className={`cursor-pointer px-6 py-2 rounded-md font-[400] border-[1px] border-gray-200 ${
                   inWhichServiceInterested === option
-                    ? "bg-green-800 text-white"
+                    ? "bg-dark text-white"
                     : "bg-light text-brand"
                 }`}
               >
@@ -122,7 +124,7 @@ const HomeTab = () => {
               onClick={() => handleAnswer("whichCounter", option)}
               className={`cursor-pointer px-6 py-2 rounded-md font-[400] border-[1px] border-gray-200 ${
                 whichCounter === option
-                  ? "bg-green-800 text-white"
+                  ? "bg-dark text-white"
                   : "bg-light text-brand"
               }`}
             >
@@ -141,7 +143,7 @@ const HomeTab = () => {
         </button>
 
         <button
-          onClick={() => navigate("/second-form")}
+          onClick={() => navigate(ROUTES.APPLICATION.PACKAGE)}
           className="w-full sm:w-auto min-w-[120px] text-[14px] px-7 py-2 cursor-pointer bg-brand hover:bg-brand text-white rounded-md flex items-center justify-center gap-2"
         >
           Next <ChevronRight size={15} />

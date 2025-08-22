@@ -7,15 +7,14 @@ const DocumentSection = () => {
   const navigate = useNavigate();
 
   const tabClasses = (tab) =>
-    `px-4 py-8 rounded-t-md font-medium text-sm ${
+    `lg:px-4 lg:py-8 px-1 py-1 text-[10px] md:text-xs  rounded-t-md font-medium lg:text-sm ${
       activeTab === tab
         ? "bg-brand text-white border border-gray-300 border-b-0 z-10 -mb-[20px]"
         : "border border-gray-300 text-brand bg-white hover:bg-gray-100"
     }`;
 
   return (
-    <div className="w-[100%] mx-auto mt-10">
-      {/* Tabs */}  
+    <div className="w-[100%]   mt-10">
       <div className="flex   gap-[7px]  ">
         <button
           onClick={() => setActiveTab("tab1")}
@@ -54,24 +53,27 @@ const DocumentSection = () => {
         </button>
       </div>
 
-      {/* Content */}
       <div className="border border-gray-300 rounded-b-md rounded-tr-md p-6 bg-white mt-[20px]">
         {activeTab === "tab1" && (
           <div>
-            <h2 className="text-brand font-semibold text-lg mb-8">
+            <h2 className="text-brand font-semibold text-md lg:text-lg mb-8">
               Necessary Documents:
             </h2>
             <ol className="list-decimal ml-5 space-y-2 mb-6">
               <li>
-                <span className="font-semibold  text-green-800">Identity</span>
-                <p className="  text-sm text-brand">
+                <span className="font-semibold  text-dark text-sm lg:text-md">
+                  Identity
+                </span>
+                <p className=" text-xs lg:text-sm text-brand ">
                   Photocopy of ID (2 sides) or Passport or Residence Permit or
                   Driver&apos;s License
                 </p>
               </li>
               <li>
-                <span className="font-semibold text-green-800">Account</span>
-                <ul className="  text-sm text-brand   list-disc">
+                <span className="font-semibold text-dark text-sm lg:text-md">
+                  Account
+                </span>
+                <ul className=" text-xs  lg:text-sm text-brand   list-disc">
                   <li>Copy of last bill</li>
                   <li>Proof of payment if the due date has passed</li>
                 </ul>
@@ -82,20 +84,24 @@ const DocumentSection = () => {
 
         {activeTab === "tab2" && (
           <div>
-            <h2 className="text-brand font-semibold text-lg mb-8">
+            <h2 className="text-brand font-semibold text-md lg:text-lg  mb-8">
               Necessary Documents:
             </h2>
             <ol className="list-decimal ml-5 space-y-2 mb-6">
               <li>
-                <span className="font-semibold  text-green-800">Identity</span>
-                <p className="  text-sm text-brand">
+                <span className="font-semibold text-sm lg:text-md  text-dark">
+                  Identity
+                </span>
+                <p className="   text-xs lg:text-sm text-brand">
                   Photocopy of ID (2 sides) or Passport or Residence Permit or
                   Driver&apos;s License
                 </p>
               </li>
               <li>
-                <span className="font-semibold text-green-800">Account</span>
-                <ul className="  text-sm text-brand   list-disc">
+                <span className="font-semibold text-sm lg:text-md text-dark">
+                  Account
+                </span>
+                <ul className="    text-xs lg:text-sm text-brand   list-disc">
                   <li>Copy of last bill</li>
                   <li>Proof of payment if the due date has passed</li>
                 </ul>
@@ -106,23 +112,25 @@ const DocumentSection = () => {
 
         {activeTab === "tab3" && (
           <div>
-            <h2 className="text-brand font-semibold text-lg mb-8">
+            <h2 className="text-brand font-semibold text-md lg:text-lg  mb-8">
               Necessary Documents:
             </h2>
             <ol className="list-decimal ml-5 space-y-2 mb-6">
               <li>
-                <span className="font-semibold  text-green-800">Identity</span>
-                <p className="  text-sm text-brand">
+                <span className="font-semibold  text-sm lg:text-md  text-dark">
+                  Identity
+                </span>
+                <p className="  text-xs lg:text-sm text-brand">
                   Photocopy of ID (2 sides) or Passport or Residence Permit or
                   Driver&apos;s License
                 </p>
               </li>
               <li>
-                <span className="font-semibold text-green-800">
+                <span className="font-semibold text-sm lg:text-md  text-dark">
                   Connection contract with DEDDIE{" "}
                 </span>
-                <ul className="  text-sm text-brand  ">
-                  <p className="  text-sm text-brand">
+                <ul className=" text-xs lg:text-sm text-brand  ">
+                  <p className="  text-xs lg:text-sm text-brand">
                     Copy of Connection contract with DEDDIE
                   </p>
                 </ul>
@@ -135,54 +143,60 @@ const DocumentSection = () => {
           <>
             {" "}
             <div>
-              <h2 className="text-blue-700 font-semibold text-lg mb-4">
+              <h2 className="text-blue-700 font-semibold text-md lg:text-lg mb-4">
                 Necessary Documents for the Owner
               </h2>
               <ol className="list-decimal ml-5 space-y-2 mb-6">
                 <li>
-                  <span className="font-semibold  text-green-800">
+                  <span className="font-semibold text-sm lg:text-md text-dark">
                     Identity
                   </span>
-                  <p className="  text-sm text-brand">
+                  <p className="  text-xs lg:text-sm text-brand">
                     Photocopy of ID (2 sides) or Passport or Residence Permit or
                     Driver&apos;s License
                   </p>
                 </li>
                 <li>
-                  <span className="font-semibold text-green-800">Account</span>
-                  <ul className="  text-sm text-brand   list-disc">
-                    <p className="  text-sm text-brand">Copy of last bill</p>
+                  <span className="font-semibold text-sm lg:text-md text-dark">
+                    Account
+                  </span>
+                  <ul className="   text-xs lg:text-sm text-brand   list-disc">
+                    <p className="   text-xs lg:text-sm text-brand">
+                      Copy of last bill
+                    </p>
                   </ul>
                 </li>
                 <li>
-                  <span className="font-semibold  text-green-800">
+                  <span className="font-semibold text-sm lg:text-md text-dark">
                     Copy of E9
                   </span>
                 </li>
               </ol>
             </div>
             <div>
-              <h2 className="text-blue-700 font-semibold text-lg mb-4">
+              <h2 className="text-blue-700 font-semibold text-md lg:text-lg  mb-4">
                 Necessary Documents for the Tenant
               </h2>
               <ol className="list-decimal ml-5 space-y-2 mb-6">
                 <li>
-                  <span className="font-semibold  text-green-800">
+                  <span className="font-semibold  text-sm lg:text-md text-dark">
                     Identity
                   </span>
-                  <p className="  text-sm text-brand">
+                  <p className="   text-xs lg:text-sm text-brand">
                     Photocopy of ID (2 sides) or Passport or Residence Permit or
                     Driver&apos;s License
                   </p>
                 </li>
                 <li>
-                  <span className="font-semibold text-green-800">Account</span>
+                  <span className="font-semibold text-dark">Account</span>
                   <ul className="  text-sm text-brand   list-disc">
-                    <p className="  text-sm text-brand">Copy of last bill</p>
+                    <p className="  text-xs lg:text-sm text-brand">
+                      Copy of last bill
+                    </p>
                   </ul>
                 </li>
                 <li>
-                  <span className="font-semibold  text-green-800">
+                  <span className="font-semibold  text-sm lg:text-md text-dark">
                     Copy of TAXI lease
                   </span>
                 </li>
@@ -191,8 +205,6 @@ const DocumentSection = () => {
           </>
         )}
       </div>
-
-  
     </div>
   );
 };
