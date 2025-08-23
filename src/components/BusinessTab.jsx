@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { ChevronRight, ChevronLeft } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../constant/route";
+import NavigationButton from "./NavigationButton";
+import { setBusinessDetails } from "../redux/actions/propertyActions";
 
 const BusinessTab = () => {
   const [provision, setProvision] = useState("");
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const savedData = useSelector((state) => state.property.businessDetails);
-    
+  // console.log("business details" , savedData)
+
   useEffect(() => {
     if (savedData) {
       setProvision(savedData.provision || "");
@@ -20,16 +20,13 @@ const BusinessTab = () => {
   const handleAnswer = (key, value) => {
     if (key === "provision") setProvision(value);
 
-    dispatch({
-      type: "setBusinessDetails",
-      payload: { [key]: value },
-    });
+    dispatch(setBusinessDetails({ [key]: value }));
   };
 
   return (
     <>
-      <div className="">
-        <h3 className=" font-[400] text-brand">
+      <div>
+        <h3 className="text-brand-regular ">
           The Agreed power of my provision is:
         </h3>
 
@@ -68,26 +65,14 @@ const BusinessTab = () => {
                 : "bg-light text-brand"
             }`}
           >
-            Regardless of power <br className="block sm:hidden "/> & Night (C-23)
+            Regardless of power <br className="block sm:hidden " /> & Night
+            (C-23)
           </button>
         </div>
       </div>
-      <div className="flex flex-wrap justify-between items-center gap-4 mt-[75px] mb-[90px]">
-        <button
-          onClick={() => navigate("/")}
-          className="w-full sm:w-auto min-w-[120px] text-[14px] px-5 py-2 cursor-pointer border border-brand text-brand rounded-md flex items-center justify-center gap-2"
-        >
-          <ChevronLeft size={15} /> Previous
-        </button>
-      
-        <button
-          onClick={() => navigate(ROUTES.APPLICATION.PACKAGE)}
-          className="w-full sm:w-auto min-w-[120px] text-[14px] px-7 py-2 cursor-pointer bg-brand hover:bg-brand text-white rounded-md flex items-center justify-center gap-2"
-        >
-          Next <ChevronRight size={15} />
-        </button>
+      <div className="form-nav">
+        <NavigationButton prevPath="/" nextPath={ROUTES.APPLICATION.PACKAGE} />
       </div>
-      
     </>
   );
 };

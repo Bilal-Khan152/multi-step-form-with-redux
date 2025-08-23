@@ -7,24 +7,23 @@ import Resource from "../components/Resource";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../constant/route";
+import { setResourceType } from "../redux/actions/resourceActions";
 
 const Home = () => {
+  
   const selectedResource = useSelector((state) => state.resource.resourceType);
- 
+  // console.log("selcted resource" , selectedResource)
+
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSelect = (type) => {
-    dispatch({
-      type: "setResourceType",
-      payload: {
-        resourceType: type,
-      },
-    });
+    dispatch(setResourceType(type));
   };
 
   return (
-    <div className="flex   flex-col items-center justify-center px-4 sm:px-2 lg:px-20 py-[20px]">
+    <div className="flex  flex-col items-center justify-center px-4 sm:px-2 lg:px-20 py-[20px]">
       <div className="grid grid-cols-1 [@media(min-width:400px)_and_(max-width:767px)]:grid-cols-2 md:grid-cols-3 justify-items-center gap-8 md:gap-[100px] w-full">
         <Resource
           title="Electricity"
@@ -34,34 +33,33 @@ const Home = () => {
           onSelect={() => handleSelect("electricity")}
         />
         <Resource
-          title="Natural Gas"
+          title="Natural gas"
           imgSrc={gas}
           alt="gas logo"
-          selected={selectedResource === "gas"}
-          onSelect={() => handleSelect("gas")}
+          selected={selectedResource === "NaturalGas"}
+          onSelect={() => handleSelect("NaturalGas")}
         />
         <Resource
           title="Electricity and Natural Gas"
           imgSrc={electricity_gas}
           alt="electricity gas logo"
-          selected={selectedResource === "electricity_gas"}
-          onSelect={() => handleSelect("electricity_gas")}
+          selected={selectedResource === "electricityAndNaturalGas"}
+          onSelect={() => handleSelect("electricityAndNaturalGas")}
         />
       </div>
 
       <button
         onClick={() => navigate(ROUTES.APPLICATION.PROPERTY)}
         disabled={!selectedResource}
-        className={`mt-8 md:mt-10 px-6 md:px-8 py-2 rounded-md flex items-center gap-2 transition-colors
-    mx-auto md:mx-0 md:ms-[630px]
-    ${
-      selectedResource
+        className={`mt-8 md:mt-10 px-6 md:px-9 py-2 rounded-md flex items-center gap-2 transition-colors mx-auto md:mx-0 md:ms-[630px]
+        ${
+        selectedResource
         ? "bg-brand hover:bg-brand cursor-pointer text-white"
         : "bg-blue-300 cursor-not-allowed text-white"
-    }`}
-      >
+         }`}
+         >
         Next
-        <ChevronRight className="mt-[2px]" size={15} />
+        <ChevronRight className="-ml-[8px] mt-[2px]" size={15} />
       </button>
     </div>
   );

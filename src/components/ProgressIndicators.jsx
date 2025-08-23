@@ -3,10 +3,10 @@ import { ChevronLeft } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
 const steps = [
-  { path: "/first-form", label: "1" },
-  { path: "/second-form", label: "2" },
-  { path: "/third-form", label: "3" },
-  { path: "/forth-form", label: "4" },
+  { path: "/application/property", label: "1" },
+  { path: "/application/package", label: "2" },
+  { path: "/application/warranty", label: "3" },
+  { path: "/application/email-verification", label: "4" },
 ];
 
 const ProgressIndicators = () => {
@@ -16,7 +16,7 @@ const ProgressIndicators = () => {
   );
 
   return (
-    <div className="bg-white border-b border-gray-200 py-4">
+    <div className="bg-white border-b border-gray-200 py-7">
       <div className="max-w-7xl flex flex-col xl:flex-row items-center xl:gap-[208px] gap-6 ms-4 md:ms-[51px]">
         <button className="flex items-center gap-2 text-brand hover:text-brand transition-colors">
           <ChevronLeft className="w-4 h-4" />

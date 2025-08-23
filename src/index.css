@@ -1,12 +1,44 @@
- @import "tailwindcss";
+@import "tailwindcss";
 
 @theme {
   --color-brand: #1e40af;
   --bg-light: #f9fafb;
-  --color-dark : #166534;  
+  --color-dark: #166534;
 }
 
-/* Optional utility if you want a direct class name */
 .bg-light {
   background-color: var(--bg-light);
 }
+
+@layer components {
+  .btn-outline {
+    @apply w-full sm:w-auto min-w-[120px] text-[14px] px-5 py-2 cursor-pointer 
+           border border-brand text-brand rounded-md 
+           flex items-center justify-center gap-2;
+  }
+
+  .btn-primary {
+    @apply w-full sm:w-auto min-w-[120px] text-[14px] px-5 py-2 cursor-pointer 
+           border border-brand bg-brand hover:bg-brand text-white rounded-md 
+           flex items-center justify-center gap-2;
+  }
+
+ .text-brand-regular {
+    @apply text-brand font-[400];
+  }
+
+ .circle-btn {
+    @apply w-8 h-8 border-2 border-blue-600 rounded-full 
+           flex items-center justify-center text-blue-600 
+           hover:bg-blue-50 transition-colors;
+  }
+
+  @layer components {
+  .form-nav {
+    @apply flex flex-wrap justify-between items-center gap-4 mt-[75px] mb-[90px];
+  }
+}
+
+
+}
+ 

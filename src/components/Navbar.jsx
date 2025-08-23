@@ -11,6 +11,7 @@ const Navbar = () => {
   return (
     <>
       <div className="flex flex-col md:flex-row justify-between items-center mt-5 md:mt-1 px-4 md:px-20">
+
         <div className="mb-4 md:mb-0">
           <img src={Logo} alt="company logo" className="h-14 md:h-16" />
         </div>

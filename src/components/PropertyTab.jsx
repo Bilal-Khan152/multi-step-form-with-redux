@@ -1,9 +1,12 @@
 import React from "react";
 import { Check } from "lucide-react";
 
-const PropertyTab = ({ title, imgSrc, alt, isSelected }) => {
+const PropertyTab = ({ title, imgSrc, alt, isSelected, onSelect }) => {
   return (
-    <div className="relative w-[178px] bg-light h-[160px] border rounded-md flex flex-col justify-center items-center gap-4 cursor-pointer transition border-gray-300">
+    <div
+      onClick={onSelect}
+      className="relative w-[178px] bg-light h-[160px] border rounded-md flex flex-col justify-center items-center gap-4 cursor-pointer transition border-gray-300"
+    >
       {isSelected && (
         <div className="absolute top-2 right-2 bg-dark w-6 h-6 rounded-full flex items-center justify-center">
           <Check size={16} className="text-white" />

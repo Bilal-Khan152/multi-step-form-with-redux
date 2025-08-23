@@ -1,39 +1,37 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { ChevronRight, ChevronLeft } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../constant/route";
+import NavigationButton from "./NavigationButton";
+import { setApartmentDetails } from "../redux/actions/propertyActions";
+
 
 const ApartmentTab = () => {
   const [alreadyCustomer, setAlreadyCustomer] = useState("");
-  const [inWhichServiceInterested, setInWhichServiceInterested] = useState("");
+  const [service, setService] = useState("");
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const savedData = useSelector((state) => state.property.apartmentDetails);
+// console.log("apartement" , savedData)
+
 
   useEffect(() => {
     if (savedData) {
       setAlreadyCustomer(savedData.alreadyCustomer || "");
-      setInWhichServiceInterested(savedData.inWhichServiceInterested || "");
+      setService(savedData.service || "");
     }
   }, [savedData]);
 
   const handleAnswer = (field, value) => {
     if (field === "alreadyCustomer") setAlreadyCustomer(value);
-    if (field === "inWhichServiceInterested")
-      setInWhichServiceInterested(value);
+    if (field === "service") setService(value);
 
-    dispatch({
-      type: "setApartmentDetails",
-      payload: { [field]: value },
-    });
+    dispatch( setApartmentDetails({[field]: value }) );
   };
 
   return (
     <div>
-      <h3 className="font-[400] text-brand">Already a customer?:</h3>
+      <h3 className="text-brand-regular">Already a customer?</h3>
 
       <div className="flex  gap-5 mt-[15px]">
         <button
@@ -58,17 +56,16 @@ const ApartmentTab = () => {
         </button>
       </div>
 
-      <h3 className="font-[400] mt-[75px] text-brand">I'm interested in:</h3>
+      <h3 className="font-[400] mt-[75px] text-brand-regular ">I'm interested in:</h3>
 
-      {/* Question 2 */}
       <div className="flex flex-wrap mt-[15px]  gap-5">
         {["Change provider", "New connection", "Re-Electrification"].map(
           (option) => (
             <button
               key={option}
-              onClick={() => handleAnswer("inWhichServiceInterested", option)}
+              onClick={() => handleAnswer("service", option)}
               className={`cursor-pointer px-4 py-2 rounded-md font-[400] border-[1px] border-gray-200 whitespace-nowrap ${
-                inWhichServiceInterested === option
+                service === option
                   ? "bg-dark text-white"
                   : "bg-light text-brand"
               }`}
@@ -78,20 +75,8 @@ const ApartmentTab = () => {
           )
         )}
       </div>
-      <div className="flex flex-wrap justify-between items-center gap-4 mt-[75px] mb-[90px]">
-        <button
-          onClick={() => navigate("/")}
-          className="w-full sm:w-auto min-w-[120px] text-[14px] px-5 py-2 cursor-pointer border border-brand text-brand rounded-md flex items-center justify-center gap-2"
-        >
-          <ChevronLeft size={15} /> Previous
-        </button>
-
-        <button
-          onClick={() => navigate(ROUTES.APPLICATION.PACKAGE)}
-          className="w-full sm:w-auto min-w-[120px] text-[14px] px-7 py-2 cursor-pointer bg-brand hover:bg-brand text-white rounded-md flex items-center justify-center gap-2"
-        >
-          Next <ChevronRight size={15} />
-        </button>
+      <div className="form-nav">
+        <NavigationButton prevPath="/" nextPath={ROUTES.APPLICATION.PACKAGE} />
       </div>
     </div>
   );

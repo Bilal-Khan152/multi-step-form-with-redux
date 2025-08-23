@@ -1,27 +1,26 @@
 import React, { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ROUTES } from "../constant/route";
+import NavigationButton from "./NavigationButton";
+import { setHomeDetails } from "../redux/actions/propertyActions";
 
 const HomeTab = () => {
   const [alreadyCustomer, setAlreadyCustomer] = useState("");
   const [isInterestedInPowerSupply, setIsInterestedInPowerSupply] =
     useState("");
-  const [inWhichServiceInterested, setInWhichServiceInterested] = useState("");
-  const [whichCounter, setWhichCounter] = useState("");
+  const [service, setService] = useState("");
+  const [counter, setCounter] = useState("");
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const savedData = useSelector((state) => state.property.homeDetails);
- 
 
+  const savedData = useSelector((state) => state.property.homeDetails);
+// console.log("home details" , savedData) ;
   useEffect(() => {
     if (savedData) {
       setAlreadyCustomer(savedData.alreadyCustomer || "");
       setIsInterestedInPowerSupply(savedData.isInterestedInPowerSupply || "");
-      setInWhichServiceInterested(savedData.inWhichServiceInterested || "");
-      setWhichCounter(savedData.whichCounter || "");
+      setService(savedData.service || "");
+      setCounter(savedData.counter || "");
     }
   }, [savedData]);
 
@@ -29,19 +28,16 @@ const HomeTab = () => {
     if (key === "alreadyCustomer") setAlreadyCustomer(value);
     if (key === "isInterestedInPowerSupply")
       setIsInterestedInPowerSupply(value);
-    if (key === "inWhichServiceInterested") setInWhichServiceInterested(value);
-    if (key === "whichCounter") setWhichCounter(value);
+    if (key === "service") setService(value);
+    if (key === "counter") setCounter(value);
 
-    dispatch({
-      type: "setHomeDetails",
-      payload: { [key]: value },
-    });
+    dispatch(setHomeDetails({ [key]: value }));
   };
 
   return (
     <>
       <div>
-        <h3 className="text-brand font-[400]">Already a customer?</h3>
+        <h3 className="text-brand-regular">Already a customer?</h3>
         <div className="flex gap-5 mt-[15px]">
           <button
             onClick={() => handleAnswer("alreadyCustomer", "yes")}
@@ -67,7 +63,7 @@ const HomeTab = () => {
       </div>
 
       <div className="mt-[75px]">
-        <h3 className="font-[400] text-brand">
+        <h3 className="text-brand-regular">
           Interested in a second power supply?
         </h3>
         <div className="flex  gap-5 mt-[15px]">
@@ -95,15 +91,15 @@ const HomeTab = () => {
       </div>
 
       <div className="mt-[75px]">
-        <h3 className="font-[400] text-brand">I'm interested in:</h3>
+        <h3 className="text-brand-regular">I'm interested in:</h3>
         <div className="flex flex-wrap  gap-5 mt-[15px]">
-          {["Change provider", "New connection", "Re-Electrification"].map(
+          {["Change provider", "New Connection", "Re-Electrification"].map(
             (option) => (
               <button
                 key={option}
-                onClick={() => handleAnswer("inWhichServiceInterested", option)}
+                onClick={() => handleAnswer("service", option)}
                 className={`cursor-pointer px-6 py-2 rounded-md font-[400] border-[1px] border-gray-200 ${
-                  inWhichServiceInterested === option
+                  service === option
                     ? "bg-dark text-white"
                     : "bg-light text-brand"
                 }`}
@@ -116,14 +112,16 @@ const HomeTab = () => {
       </div>
 
       <div className="mt-[75px]">
-        <h3 className="font-[400] text-brand">Counter type?</h3>
+        <h3 className="text-brand-regular">
+          Do you have a Day or Night counter?
+        </h3>
         <div className="flex  gap-5 mt-[15px]">
           {["Daily", "Nocturnal"].map((option) => (
             <button
               key={option}
-              onClick={() => handleAnswer("whichCounter", option)}
+              onClick={() => handleAnswer("counter", option)}
               className={`cursor-pointer px-6 py-2 rounded-md font-[400] border-[1px] border-gray-200 ${
-                whichCounter === option
+                counter === option
                   ? "bg-dark text-white"
                   : "bg-light text-brand"
               }`}
@@ -134,20 +132,8 @@ const HomeTab = () => {
         </div>
       </div>
 
-      <div className="flex flex-wrap justify-between items-center gap-4 mt-[75px] mb-[90px]">
-        <button
-          onClick={() => navigate("/")}
-          className="w-full sm:w-auto min-w-[120px] text-[14px] px-5 py-2 cursor-pointer border border-brand text-brand rounded-md flex items-center justify-center gap-2"
-        >
-          <ChevronLeft size={15} /> Previous
-        </button>
-
-        <button
-          onClick={() => navigate(ROUTES.APPLICATION.PACKAGE)}
-          className="w-full sm:w-auto min-w-[120px] text-[14px] px-7 py-2 cursor-pointer bg-brand hover:bg-brand text-white rounded-md flex items-center justify-center gap-2"
-        >
-          Next <ChevronRight size={15} />
-        </button>
+      <div className="form-nav">
+        <NavigationButton prevPath="/" nextPath={ROUTES.APPLICATION.PACKAGE} />
       </div>
     </>
   );

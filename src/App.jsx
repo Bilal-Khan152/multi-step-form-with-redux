@@ -9,6 +9,7 @@ import EmailVerification from "./pages/EmailVerification";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import { ROUTES } from "./constant/route";
+import NotFound from "./components/NotFound";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
                 element={<EmailVerification />}
               />
             </Route>
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Layout>
       </Router>
