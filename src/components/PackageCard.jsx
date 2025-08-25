@@ -3,13 +3,13 @@ import { Grid3X3, ExternalLink } from "lucide-react";
 
 const PackageCard = ({ imgSrc, title, desc, isSelected, onSelect }) => {
   return (
-    <div className="border-[1px] border-gray-300 rounded-xl ">
+    <div className="border-[1px] border-gray-300 rounded-xl w-[260px]">
       <div>
         <img src={imgSrc} alt="" className="rounded-t-xl w-full " />
       </div>
 
       <div className="p-5">
-        <p className=" text-md md:text-xl text-brand font-semibold">{title}</p>
+        <p className=" text-md md:text-[18px] text-brand font-semibold">{title}</p>
         <p className="text-brand text-[14px] font-[380px] mt-[12px]">{desc}</p>
 
         <button

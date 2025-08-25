@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { ROUTES } from "../constant/route";
+import { ROUTES } from "../constants/route";
 import NavigationButton from "./NavigationButton";
 import { setBusinessDetails } from "../redux/actions/propertyActions";
 
@@ -9,7 +9,7 @@ const BusinessTab = () => {
   const dispatch = useDispatch();
 
   const savedData = useSelector((state) => state.property.businessDetails);
-  // console.log("business details" , savedData)
+  const isDisable = provision == "" ;
 
   useEffect(() => {
     if (savedData) {
@@ -70,8 +70,8 @@ const BusinessTab = () => {
           </button>
         </div>
       </div>
-      <div className="form-nav">
-        <NavigationButton prevPath="/" nextPath={ROUTES.APPLICATION.PACKAGE} />
+      <div className="form-nav ">
+        <NavigationButton   disable={isDisable} prevPath="/" nextPath={ROUTES.APPLICATION.PACKAGE} />
       </div>
     </>
   );

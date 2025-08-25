@@ -16,16 +16,22 @@ const ProgressIndicators = () => {
   );
 
   return (
-    <div className="bg-white border-b border-gray-200 py-7">
-      <div className="max-w-7xl flex flex-col xl:flex-row items-center xl:gap-[208px] gap-6 ms-4 md:ms-[51px]">
-        <button className="flex items-center gap-2 text-brand hover:text-brand transition-colors">
+    <div className="bg-white border-b border-gray-200 py-7 ">
+      <div className="flex gap-10 sm:flex-row flex-col  lg:gap-40 items-center">
+      <div className="max-w-7xl flex flex-col xl:flex-row items-center  xl:gap-[208px] gap-6   ">
+
+        
+        <button className="sm:ml-[65px]  flex items-center gap-2 text-brand hover:text-brand transition-colors">
           <ChevronLeft className="w-4 h-4" />
           <span className="text-sm font-medium">
             <Link to="/">Back to home page</Link>
           </span>
         </button>
+         
 
-        <div className="flex items-center gap-2 sm:gap-4 md:gap-8 flex-wrap justify-center">
+        
+      </div>
+      <div className="flex items-center gap-2 sm:gap-4   xl:gap-6  flex-wrap justify-center">
           {steps.map((step, index) => {
             const isCompleted = index < currentIndex;
             const isActive = index === currentIndex;
@@ -48,7 +54,7 @@ const ProgressIndicators = () => {
 
                 {index < steps.length - 1 && (
                   <div
-                    className={`w-8 sm:w-12 md:w-[130px] h-0.5 
+                    className={`w-8 sm:w-12 md:w-[60px]  lg:w-[100px]  xl:w-[160px] h-0.5 
                       ${isCompleted ? "bg-dark" : "bg-gray-300"}
                     `}
                   ></div>
@@ -57,7 +63,7 @@ const ProgressIndicators = () => {
             );
           })}
         </div>
-      </div>
+        </div>
     </div>
   );
 };

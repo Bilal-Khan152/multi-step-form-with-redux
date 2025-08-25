@@ -1,8 +1,8 @@
 import React from "react";
-import left_footer from "../assets/left_footer.png";
-import right_footer from "../assets/right_footer.png";
-import middle_footer_2 from "../assets/middle_footer_2.png";
-import middle_footer_1 from "../assets/middle_footer_1.png";
+import left_footer from "../assets/images/left_footer.png";
+import right_footer from "../assets/images/right_footer.png";
+import middle_footer_2 from "../assets/images/middle_footer_2.png";
+import middle_footer_1 from "../assets/images/middle_footer_1.png";
 
 
 const Footer = () => {

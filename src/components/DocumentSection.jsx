@@ -1,21 +1,31 @@
 import React, { useState } from "react";
+import {
+  SET_PROVIDER_MY_NAME,
+  SET_PROVIDER_OTHER_NAME,
+  SET_INITIAL_ELECTRIFICATION,
+  SET_RE_ELECTRIFICTION,
+} from "../constants/tabs";
+import ChnageProviderInMyName from "./ChnageProviderInMyName";
+import ChangeProviderOtherName from "./ChangeProviderOtherName";
+import InitialElectrification from "./InitialElectrification";
+import ReElectrification from "./ReElectrification";
 
 const DocumentSection = () => {
-  const [activeTab, setActiveTab] = useState("tab1");
+  const [activeTab, setActiveTab] = useState(SET_PROVIDER_MY_NAME);
 
   const tabClasses = (tab) =>
-    `lg:px-4 lg:py-8 px-1 py-1 text-[10px] md:text-xs  rounded-t-md font-medium lg:text-sm ${
+    `lg:px-6 lg:py-8 px-1 py-1 text-[10px] md:text-xs  rounded-t-md font-medium lg:text-sm ${
       activeTab === tab
         ? "bg-brand text-white border border-gray-300 border-b-0 z-10 -mb-[20px]"
         : "border border-gray-300 text-brand bg-white hover:bg-gray-100"
     }`;
 
   return (
-    <div className="w-[100%] mt-10">
-      <div className="flex gap-[7px]  ">
+    <div className="lg:w-[110%]   mt-10">
+      <div className="flex gap-[10px]   ">
         <button
-          onClick={() => setActiveTab("tab1")}
-          className={tabClasses("tab1")}
+          onClick={() => setActiveTab(SET_PROVIDER_MY_NAME)}
+          className={tabClasses(SET_PROVIDER_MY_NAME)}
         >
           Change provider
           <br />
@@ -23,8 +33,8 @@ const DocumentSection = () => {
         </button>
 
         <button
-          onClick={() => setActiveTab("tab2")}
-          className={tabClasses("tab2")}
+          onClick={() => setActiveTab(SET_PROVIDER_OTHER_NAME)}
+          className={tabClasses(SET_PROVIDER_OTHER_NAME)}
         >
           Change provider
           <br />
@@ -34,8 +44,8 @@ const DocumentSection = () => {
         </button>
 
         <button
-          onClick={() => setActiveTab("tab3")}
-          className={tabClasses("tab3")}
+          onClick={() => setActiveTab(SET_INITIAL_ELECTRIFICATION)}
+          className={tabClasses(SET_INITIAL_ELECTRIFICATION)}
         >
           Initial Electrification/
           <br />
@@ -43,166 +53,23 @@ const DocumentSection = () => {
         </button>
 
         <button
-          onClick={() => setActiveTab("tab4")}
-          className={tabClasses("tab4")}
+          onClick={() => setActiveTab(SET_RE_ELECTRIFICTION)}
+          className={tabClasses(SET_RE_ELECTRIFICTION)}
         >
           Re-electrification
         </button>
       </div>
 
       <div className="border border-gray-300 rounded-b-md rounded-tr-md p-6 bg-white mt-[20px]">
-        {activeTab === "tab1" && (
-          <div>
-            <h2 className="text-brand font-semibold text-md lg:text-lg mb-8">
-              Necessary Documents:
-            </h2>
-            <ol className="list-decimal ml-5 space-y-2 mb-6">
-              <li>
-                <span className="font-semibold text-dark text-sm lg:text-md">
-                  Identity
-                </span>
-                <p className=" text-xs lg:text-sm text-brand-regular  ">
-                  Photocopy of ID (2 sides) or Passport or Residence Permit or
-                  Driver&apos;s License
-                </p>
-              </li>
-              <li>
-                <span className="font-semibold text-dark text-sm lg:text-md">
-                  Account
-                </span>
-                <ul className=" text-xs  lg:text-sm text-brand-regular list-disc">
-                  <li>Copy of last bill</li>
-                  <li>Proof of payment if the due date has passed</li>
-                </ul>
-              </li>
-            </ol>
-          </div>
+        {activeTab === SET_PROVIDER_MY_NAME && <ChnageProviderInMyName />}
+
+        {activeTab === SET_PROVIDER_OTHER_NAME && <ChangeProviderOtherName />}
+
+        {activeTab === SET_INITIAL_ELECTRIFICATION && (
+          <InitialElectrification />
         )}
 
-        {activeTab === "tab2" && (
-          <div>
-            <h2 className="text-brand font-semibold text-md lg:text-lg  mb-8">
-              Necessary Documents:
-            </h2>
-            <ol className="list-decimal ml-5 space-y-2 mb-6">
-              <li>
-                <span className="font-semibold text-sm lg:text-md  text-dark">
-                  Identity
-                </span>
-                <p className="   text-xs lg:text-sm text-brand-regular ">
-                  Photocopy of ID (2 sides) or Passport or Residence Permit or
-                  Driver&apos;s License
-                </p>
-              </li>
-              <li>
-                <span className="font-semibold text-sm lg:text-md text-dark">
-                  Account
-                </span>
-                <ul className="text-xs lg:text-sm text-brand-regular list-disc">
-                  <li>Copy of last bill</li>
-                  <li>Proof of payment if the due date has passed</li>
-                </ul>
-              </li>
-            </ol>
-          </div>
-        )}
-
-        {activeTab === "tab3" && (
-          <div>
-            <h2 className="text-brand font-semibold text-md lg:text-lg  mb-8">
-              Necessary Documents:
-            </h2>
-            <ol className="list-decimal ml-5 space-y-2 mb-6">
-              <li>
-                <span className="font-semibold  text-sm lg:text-md  text-dark">
-                  Identity
-                </span>
-                <p className="text-xs lg:text-sm text-brand-regular text-brand-regular">
-                  Photocopy of ID (2 sides) or Passport or Residence Permit or
-                  Driver&apos;s License
-                </p>
-              </li>
-              <li>
-                <span className="font-semibold text-sm lg:text-md  text-dark">
-                  Connection contract with DEDDIE{" "}
-                </span>
-                <ul className=" text-xs lg:text-sm text-brand  ">
-                  <p
-                    className="text-xs lg:text-sm text-brand-regular text-brand-regular"
-                  >
-                    Copy of Connection contract with DEDDIE
-                  </p>
-                </ul>
-              </li>
-            </ol>
-          </div>
-        )}
-
-        {activeTab === "tab4" && (
-          <>
-            {" "}
-            <div>
-              <h2 className="text-brand font-semibold text-md lg:text-lg mb-4">
-                Necessary Documents for the Owner
-              </h2>
-              <ol className="list-decimal ml-5 space-y-2 mb-6">
-                <li>
-                  <span className="font-semibold text-sm lg:text-md text-dark">
-                    Identity
-                  </span>
-                  <p
-                    className="text-xs lg:text-sm text-brand-regular text-brand-regular"
-                  >
-                    Photocopy of ID (2 sides) or Passport or Residence Permit or
-                    Driver&apos;s License
-                  </p>
-                </li>
-                <li>
-                  <span className="font-semibold text-sm lg:text-md text-dark">
-                    Account
-                  </span>
-                  <ul className="text-xs lg:text-sm text-brand-regular text-brand-regular list-disc">
-                    <p className="   text-xs lg:text-sm  ">Copy of last bill</p>
-                  </ul>
-                </li>
-                <li>
-                  <span className="font-semibold text-sm lg:text-md text-dark">
-                    Copy of E9
-                  </span>
-                </li>
-              </ol>
-            </div>
-            <div>
-              <h2 className="text-brand font-semibold text-md lg:text-lg  mb-4">
-                Necessary Documents for the Tenant
-              </h2>
-              <ol className="list-decimal ml-5 space-y-2 mb-6">
-                <li>
-                  <span className="font-semibold  text-sm lg:text-md text-dark">
-                    Identity
-                  </span>
-                  <p className="text-xs lg:text-sm text-brand-regular text-brand-regular">
-                    Photocopy of ID (2 sides) or Passport or Residence Permit or
-                    Driver&apos;s License
-                  </p>
-                </li>
-                <li>
-                  <span className="font-semibold text-dark">Account</span>
-                  <ul className=" text-sm text-brand-regular text-brand-regular list-disc">
-                    <p className="text-xs lg:text-sm text-brand-regular text-brand-regular">
-                      Copy of last bill
-                    </p>
-                  </ul>
-                </li>
-                <li>
-                  <span className="font-semibold  text-sm lg:text-md text-dark">
-                    Copy of TAXI lease
-                  </span>
-                </li>
-              </ol>
-            </div>
-          </>
-        )}
+        {activeTab === SET_RE_ELECTRIFICTION && <ReElectrification />}
       </div>
     </div>
   );

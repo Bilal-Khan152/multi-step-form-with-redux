@@ -1,19 +1,16 @@
 import React from "react";
-import electricity from "../assets/electricity_icon.png";
-import gas from "../assets/gas_icon.png";
-import electricity_gas from "../assets/electricity_gas_icon.png";
-import { ChevronRight } from "lucide-react";
-import Resource from "../components/Resource";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { ROUTES } from "../constant/route";
+import { ChevronRight } from "lucide-react";
+import { ROUTES } from "../constants/route";
 import { setResourceType } from "../redux/actions/resourceActions";
+import Resource from "../components/Resource";
+import electricity from "../assets/images/electricity_icon.png";
+import gas from "../assets/images/gas_icon.png";
+import electricity_gas from "../assets/images/electricity_gas_icon.png";
 
 const Home = () => {
-  
   const selectedResource = useSelector((state) => state.resource.resourceType);
-  // console.log("selcted resource" , selectedResource)
-
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -53,11 +50,11 @@ const Home = () => {
         disabled={!selectedResource}
         className={`mt-8 md:mt-10 px-6 md:px-9 py-2 rounded-md flex items-center gap-2 transition-colors mx-auto md:mx-0 md:ms-[630px]
         ${
-        selectedResource
-        ? "bg-brand hover:bg-brand cursor-pointer text-white"
-        : "bg-blue-300 cursor-not-allowed text-white"
-         }`}
-         >
+          selectedResource
+            ? "bg-brand hover:bg-brand cursor-pointer text-white"
+            : "bg-blue-300 cursor-not-allowed text-white"
+        }`}
+      >
         Next
         <ChevronRight className="-ml-[8px] mt-[2px]" size={15} />
       </button>

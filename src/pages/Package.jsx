@@ -1,18 +1,52 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import day_home_flat from "../assets/day_home_flat.png";
-import PackageCard from "../components/PackageCard";
-import day_home_flexi_plus from "../assets/day_home_flexi_plus.png";
-import day_home_flexi from "../assets/day_home_flexi.png";
 import { useDispatch, useSelector } from "react-redux";
-import { ROUTES } from "../constant/route";
-import NavigationButton from "../components/NavigationButton";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+import { ROUTES } from "../constants/route";
 import { setPackageResource } from "../redux/actions/packageActions";
+import PackageCard from "../components/PackageCard";
+import NavigationButton from "../components/NavigationButton";
+import { PACKAGES } from "../constants/packages";
 
 const Package = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [slidesToShow, setSlidesToShow] = useState(3);
+  const sliderRef = useRef(null);
+  const settings = {
+  dots: false,
+  arrows: false,
+  infinite: false,
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  afterChange: (index) => {
+    setCurrentSlide(index);
+    // always sync slidesToShow from slick's innerSlider
+    const slickSlidesToShow =
+      sliderRef.current?.innerSlider?.props?.slidesToShow || 3;
+    setSlidesToShow(slickSlidesToShow);
+  },
+  responsive: [
+    { breakpoint: 1024, settings: { slidesToShow: 2 } },
+    { breakpoint: 640, settings: { slidesToShow: 1 } },
+  ],
+};
+
+
+  const totalSlides = PACKAGES.length;
+  const totalDots = Math.ceil(totalSlides / slidesToShow);
+const pageIndex = Math.min(
+  totalDots - 1,
+  Math.floor(currentSlide / slidesToShow)
+);
+
+
+
   const selectedPackage = useSelector((state) => state.package.packageType);
-  // console.log("package" , selectedPackage)
+
   const dispatch = useDispatch();
+  const isDisable = !selectedPackage;
 
   const handleSelect = (type) => {
     dispatch(setPackageResource(type));
@@ -20,7 +54,7 @@ const Package = () => {
 
   return (
     <div className="w-full ">
-      <div className=" w-[60%] mx-auto ">
+      <div className=" w-[82%] md:w-[75%]  xl:w-[66%] mx-auto  ">
         <div className="bg-white p-6">
           <div className="max-w-6xl mx-auto">
             <div className="mb-2 ms-0 md:ms-[20px]">
@@ -39,49 +73,56 @@ const Package = () => {
 
               <div className="flex  items-center gap-14 mt-10 lg:mt-0">
                 <div className="flex gap-2">
-                  <div className="w-2 h-2 bg-brand rounded-full"></div>
-                  <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
+                  {Array.from({ length: totalDots }).map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() =>
+                        sliderRef.current?.slickGoTo(i * slidesToShow)
+                      }
+                      className={`w-2 h-2 rounded-full ${
+                        pageIndex === i ? "bg-brand" : "bg-gray-300"
+                      }`}
+                    />
+                  ))}
                 </div>
 
                 <div className="flex gap-4">
-                  <button className="circle-btn">
+                  <button
+                    className="circle-btn"
+                    onClick={() => sliderRef.current?.slickPrev()}
+                  >
                     <ChevronLeft size={15} className="w-5 h-5" />
                   </button>
-                  <button className="circle-btn">
+                  <button
+                    className="circle-btn"
+                    onClick={() => sliderRef.current?.slickNext()}
+                  >
                     <ChevronRight size={15} className="w-5 h-5" />
                   </button>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 px-4 gap-4   ">
-          <PackageCard
-            imgSrc={day_home_flexi_plus}
-            title="Volton Unique Flexi Plus"
-            desc="Secure the lowest kilowatt-hour price on the energy market"
-            isSelected={selectedPackage === "Volton Unique Flexi Plus"}
-            onSelect={() => handleSelect("Volton Unique Flexi Plus")}
-          />
-          <PackageCard
-            imgSrc={day_home_flat}
-            title="Volton Unique Flat"
-            desc="Keep a fixed charge on your account for 24 months"
-            isSelected={selectedPackage === "Volton Unique Flat"}
-            onSelect={() => handleSelect("Volton Unique Flat")}
-          />
-          <PackageCard
-            imgSrc={day_home_flexi}
-            title="Volton Unique Flexi"
-            desc="Reduce your energy bill up to 43% for 24 months"
-            isSelected={selectedPackage === "Volton Unique Flexi"}
-            onSelect={() => handleSelect("Volton Unique Flexi")}
-          />
-        </div>
-
-        <div className="form-nav">
+        </div>{" "}
+        <Slider
+          ref={sliderRef}
+          {...settings}
+          className=" flex px-0 gap-6 xl:px-[95px] ms-[-15px] xl:ms-[-65px]"
+        >
+          {PACKAGES.map((pkg) => (
+            <PackageCard
+              key={pkg.title}
+              imgSrc={pkg.imgSrc}
+              title={pkg.title}
+              desc={pkg.desc}
+              isSelected={selectedPackage === pkg.title}
+              onSelect={() => handleSelect(pkg.title)}
+            />
+          ))}
+        </Slider>
+        <div className="form-nav sm:w-[98%] ms-[15px] sm:ms-0 ">
           <NavigationButton
+            disable={isDisable}
             prevPath={ROUTES.APPLICATION.PROPERTY}
             nextPath={ROUTES.APPLICATION.WARRANTY}
           />

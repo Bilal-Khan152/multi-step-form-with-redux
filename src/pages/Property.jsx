@@ -1,20 +1,18 @@
 import Reac from "react";
-import home from "../assets/home.png";
-import company from "../assets/company.png";
-import apartment from "../assets/apartment.png";
+import { useDispatch, useSelector } from "react-redux";
 import PropertyTab from "../components/PropertyTab";
 import HomeTab from "../components/HomeTab";
 import BusinessTab from "../components/BusinessTab";
 import ApartmentTab from "../components/ApartmentTab";
-import { useDispatch, useSelector } from "react-redux";
 import { setProperty } from "../redux/actions/propertyActions";
+import home from "../assets/images/home.png";
+import company from "../assets/images/company.png";
+import apartment from "../assets/images/apartment.png";
 
 const Property = () => {
   const selectedProperty = useSelector((state) => state.property.propertyType);
-  //  console.log("selected property " , selectedProperty)
 
   const dispatch = useDispatch();
-
 
   const handlePropertyTabClick = (type) => {
     dispatch(setProperty(type));
@@ -22,7 +20,7 @@ const Property = () => {
 
   return (
     <div className=" w-full">
-      <div className=" w-[60%] mx-auto ">
+      <div className=" w-[65%] mx-auto ">
         <div>
           <p className="px-4 py-[60px] text-brand-regular">
             I'm interested in:

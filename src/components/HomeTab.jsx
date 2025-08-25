@@ -1,26 +1,33 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ROUTES } from "../constant/route";
+import { ROUTES } from "../constants/route";
 import NavigationButton from "./NavigationButton";
 import { setHomeDetails } from "../redux/actions/propertyActions";
 
+const services = ["Change provider", "New Connection", "Re-Electrification"];
+const counters = ["Daily", "Nocturnal"];
+
 const HomeTab = () => {
-  const [alreadyCustomer, setAlreadyCustomer] = useState("");
+  const [alreadyCustomer, setAlreadyCustomer] = useState(null);
   const [isInterestedInPowerSupply, setIsInterestedInPowerSupply] =
-    useState("");
+    useState(null);
   const [service, setService] = useState("");
   const [counter, setCounter] = useState("");
 
   const dispatch = useDispatch();
-
   const savedData = useSelector((state) => state.property.homeDetails);
-// console.log("home details" , savedData) ;
+  const isDisable =
+    alreadyCustomer == null ||
+    isInterestedInPowerSupply == null ||
+    service == "" ||
+    counter == "";
+
   useEffect(() => {
     if (savedData) {
-      setAlreadyCustomer(savedData.alreadyCustomer || "");
-      setIsInterestedInPowerSupply(savedData.isInterestedInPowerSupply || "");
-      setService(savedData.service || "");
-      setCounter(savedData.counter || "");
+      setAlreadyCustomer(savedData.alreadyCustomer ?? null);
+      setIsInterestedInPowerSupply(savedData.isInterestedInPowerSupply ?? null);
+      setService(savedData.service ?? "");
+      setCounter(savedData.counter ?? "");
     }
   }, [savedData]);
 
@@ -40,9 +47,9 @@ const HomeTab = () => {
         <h3 className="text-brand-regular">Already a customer?</h3>
         <div className="flex gap-5 mt-[15px]">
           <button
-            onClick={() => handleAnswer("alreadyCustomer", "yes")}
+            onClick={() => handleAnswer("alreadyCustomer", true)}
             className={`cursor-pointer px-6 py-2 rounded-md border-[1px] border-gray-200 font-[400] ${
-              alreadyCustomer === "yes"
+              alreadyCustomer === true
                 ? "bg-dark text-white"
                 : "bg-light text-brand"
             }`}
@@ -50,9 +57,9 @@ const HomeTab = () => {
             Yes
           </button>
           <button
-            onClick={() => handleAnswer("alreadyCustomer", "no")}
+            onClick={() => handleAnswer("alreadyCustomer", false)}
             className={`cursor-pointer px-6 py-2 rounded-md font-[400] border-[1px] border-gray-200 ${
-              alreadyCustomer === "no"
+              alreadyCustomer === false
                 ? "bg-dark text-white"
                 : "bg-light text-brand"
             }`}
@@ -68,9 +75,9 @@ const HomeTab = () => {
         </h3>
         <div className="flex  gap-5 mt-[15px]">
           <button
-            onClick={() => handleAnswer("isInterestedInPowerSupply", "yes")}
+            onClick={() => handleAnswer("isInterestedInPowerSupply", true)}
             className={`cursor-pointer px-6 py-2 rounded-md font-[400] border-[1px] border-gray-200 ${
-              isInterestedInPowerSupply === "yes"
+              isInterestedInPowerSupply === true
                 ? "bg-dark text-white"
                 : "bg-light text-brand"
             }`}
@@ -78,9 +85,9 @@ const HomeTab = () => {
             Yes
           </button>
           <button
-            onClick={() => handleAnswer("isInterestedInPowerSupply", "no")}
+            onClick={() => handleAnswer("isInterestedInPowerSupply", false)}
             className={`cursor-pointer px-6 py-2 rounded-md font-[400] border-[1px] border-gray-200 ${
-              isInterestedInPowerSupply === "no"
+              isInterestedInPowerSupply === false
                 ? "bg-dark text-white"
                 : "bg-light text-brand"
             }`}
@@ -93,21 +100,19 @@ const HomeTab = () => {
       <div className="mt-[75px]">
         <h3 className="text-brand-regular">I'm interested in:</h3>
         <div className="flex flex-wrap  gap-5 mt-[15px]">
-          {["Change provider", "New Connection", "Re-Electrification"].map(
-            (option) => (
-              <button
-                key={option}
-                onClick={() => handleAnswer("service", option)}
-                className={`cursor-pointer px-6 py-2 rounded-md font-[400] border-[1px] border-gray-200 ${
-                  service === option
-                    ? "bg-dark text-white"
-                    : "bg-light text-brand"
-                }`}
-              >
-                {option}
-              </button>
-            )
-          )}
+          {services.map((option) => (
+            <button
+              key={option}
+              onClick={() => handleAnswer("service", option)}
+              className={`cursor-pointer px-6 py-2 rounded-md font-[400] border-[1px] border-gray-200 ${
+                service === option
+                  ? "bg-dark text-white"
+                  : "bg-light text-brand"
+              }`}
+            >
+              {option}
+            </button>
+          ))}
         </div>
       </div>
 
@@ -116,7 +121,7 @@ const HomeTab = () => {
           Do you have a Day or Night counter?
         </h3>
         <div className="flex  gap-5 mt-[15px]">
-          {["Daily", "Nocturnal"].map((option) => (
+          {counters.map((option) => (
             <button
               key={option}
               onClick={() => handleAnswer("counter", option)}
@@ -133,7 +138,11 @@ const HomeTab = () => {
       </div>
 
       <div className="form-nav">
-        <NavigationButton prevPath="/" nextPath={ROUTES.APPLICATION.PACKAGE} />
+        <NavigationButton
+          disable={isDisable}
+          prevPath="/"
+          nextPath={ROUTES.APPLICATION.PACKAGE}
+        />
       </div>
     </>
   );

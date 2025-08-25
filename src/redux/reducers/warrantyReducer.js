@@ -1,3 +1,5 @@
+import { SET_WARRANTY_DETAILS } from "../../constants/actionTypes";
+
 const initialState = {
   previousSupplierWarranty: "",
   agreedSupplyPower: "",
@@ -5,7 +7,7 @@ const initialState = {
 
 export default function warrantyReducer(state = initialState, action) {
   switch (action.type) {
-    case "setWarrantyDetails":
+    case SET_WARRANTY_DETAILS:
       return { ...state, ...action.payload };
     default:
       return state;

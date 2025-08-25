@@ -12,14 +12,14 @@
 
 @layer components {
   .btn-outline {
-    @apply w-full sm:w-auto min-w-[120px] text-[14px] px-5 py-2 cursor-pointer 
+    @apply sm:w-[110px] min-w-[90px]  text-[14px] px-0 sm:px-5 py-2 cursor-pointer 
            border border-brand text-brand rounded-md 
            flex items-center justify-center gap-2;
   }
 
   .btn-primary {
-    @apply w-full sm:w-auto min-w-[120px] text-[14px] px-5 py-2 cursor-pointer 
-           border border-brand bg-brand hover:bg-brand text-white rounded-md 
+    @apply sm:w-[110px] min-w-[90px]  text-[14px] px-0 sm:px-5 py-2  cursor-pointer 
+           border-2 border-brand bg-brand hover:bg-brand text-white rounded-md 
            flex items-center justify-center gap-2;
   }
 

@@ -1,21 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { ROUTES } from "../constant/route";
+import { ROUTES } from "../constants/route";
 import { setUserEmail } from "../redux/actions/emailActions";
 
 const EmailVerification = () => {
+  const [applicationCompleted, setCompleted] = useState(true);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const savedState = localStorage.getItem("reduxState");
   const email =
     useSelector((state) => state.emailVerification.emailVerification) || "";
-  // console.log(email);
 
   const handleChange = (newEmail) => {
-    //  console.log("email" , newEmail)
     dispatch(setUserEmail(newEmail));
   };
 
@@ -30,6 +30,7 @@ const EmailVerification = () => {
     }
 
     toast.success("Email sent successfully");
+    setCompleted(false);
 
     if (savedState) {
       console.log("FormData:", JSON.stringify(JSON.parse(savedState), null, 2));
@@ -84,7 +85,16 @@ const EmailVerification = () => {
           <ChevronLeft size={15} /> Previous
         </button>
 
-        <button onClick={handleNextBtn} className="btn-primary">
+        <button
+          disabled={applicationCompleted}
+          onClick={handleNextBtn}
+          className={`btn-primary  flex items-center gap-1 
+          ${
+            applicationCompleted
+              ? "bg-blue-300 cursor-not-allowed border-2 border-blue-300 text-white"
+              : ""
+          }`}
+        >
           Next <ChevronRight size={15} />
         </button>
       </div>

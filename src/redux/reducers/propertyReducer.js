@@ -1,3 +1,10 @@
+import {
+  SET_PROPERTY_TYPE,
+  SET_HOME_DETAILS,
+  SET_BUSINESS_DETAILS,
+  SET_APARTMENT_DETAILS,
+} from "../../constants/actionTypes";
+
 const initialState = {
   propertyType: "home",
   homeDetails: {},
@@ -7,10 +14,10 @@ const initialState = {
 
 export default function propertyReducer(state = initialState, action) {
   switch (action.type) {
-    case "setPropertyType":
+    case SET_PROPERTY_TYPE:
       return { ...state, propertyType: action.payload };
 
-    case "setHomeDetails":
+    case SET_HOME_DETAILS:
       return {
         ...state,
         homeDetails: { ...state.homeDetails, ...action.payload },
@@ -18,7 +25,7 @@ export default function propertyReducer(state = initialState, action) {
         apartmentDetails: {},
       };
 
-    case "setBusinessDetails":
+    case SET_BUSINESS_DETAILS:
       return {
         ...state,
         homeDetails: {},
@@ -26,7 +33,7 @@ export default function propertyReducer(state = initialState, action) {
         apartmentDetails: {},
       };
 
-    case "setApartmentDetails":
+    case SET_APARTMENT_DETAILS:
       return {
         ...state,
         homeDetails: {},

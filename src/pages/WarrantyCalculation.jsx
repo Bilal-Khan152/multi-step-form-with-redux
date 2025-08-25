@@ -1,9 +1,9 @@
-import React, { useState } from "react"; 
+import React, { useState } from "react";
 import { Info, ChevronLeft, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import DocumentSection from "../components/DocumentSection";
-import { ROUTES } from "../constant/route";
+import { ROUTES } from "../constants/route";
 import { setWarrantyDetails } from "../redux/actions/warrantyActions";
 
 const WarrantyCalculation = () => {
@@ -13,17 +13,19 @@ const WarrantyCalculation = () => {
     (state) => state.warrantyCalculation
   );
 
-  // console.log(previousSupplierWarranty , agreedSupplyPower)
+  const isDisable = !previousSupplierWarranty || !agreedSupplyPower;
+  console.log("diable", isDisable);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleWarrantyChange = (field, value) => {
-    dispatch(setWarrantyDetails({[field]: value }));
+    dispatch(setWarrantyDetails({ [field]: value }));
   };
 
   return (
     <div className="w-full">
-      <div className=" w-[80%]  ms-[10px] sm:ms-[55px] mt-[40px] ">
+      <div className=" w-[80%]  ms-[10px] sm:ms-[25px] mt-[40px] ">
         {activeSection == "form" ? (
           <>
             <div className=" w-full xl:w-[50%] mx-auto">
@@ -43,7 +45,7 @@ const WarrantyCalculation = () => {
                 <p className=" text-brand-regular text-md">
                   Prevoius Supplier Warranty
                 </p>
-                <Info size={20} className="text-dark ms-[100px]" />
+                <Info size={20} className="text-dark ms-[70px]" />
               </div>
 
               <div className="flex flex-col w-24 mt-[40px]">
@@ -81,6 +83,9 @@ const WarrantyCalculation = () => {
                       handleWarrantyChange("agreedSupplyPower", e.target.value)
                     }
                   >
+                    <option value="" disabled hidden>
+                      15
+                    </option>
                     <option value="15">15</option>
                     <option value="300">300</option>
                     <option value="500">500</option>
@@ -121,8 +126,14 @@ const WarrantyCalculation = () => {
                 </button>
 
                 <button
-                  onClick={() => setActiveSection("document")}
-                  className="btn-primary"
+                  onClick={() => !isDisable && setActiveSection("document")}
+                  disabled={isDisable}
+                  className={`btn-primary flex items-center gap-1 
+          ${
+            isDisable
+              ? "bg-blue-300 cursor-not-allowed border-none text-white"
+              : ""
+          }`}
                 >
                   Next <ChevronRight size={15} />
                 </button>
@@ -131,7 +142,7 @@ const WarrantyCalculation = () => {
           </>
         ) : null}
 
-        <div className="lg:w-[60%] sm:w-[100%] w-[120%] ms-0 xl:ms-[330px]  ">
+        <div className=" lg:w-full xl:w-[60%] sm:w-[100%] w-[120%] ms-0 xl:ms-[330px]  ">
           {activeSection == "document" ? (
             <>
               <div className="mt-[60px] ">
@@ -144,7 +155,7 @@ const WarrantyCalculation = () => {
             </>
           ) : null}
           {activeSection == "document" ? (
-            <div className="form-nav">
+            <div className="form-nav lg:w-[110%] ">
               <button
                 onClick={() => setActiveSection("form")}
                 className="btn-outline"
@@ -154,7 +165,7 @@ const WarrantyCalculation = () => {
 
               <button
                 onClick={() => navigate(ROUTES.APPLICATION.EMAILVERIFICATION)}
-                className="btn-primary"
+                className="btn-primary "
               >
                 Next <ChevronRight size={15} />
               </button>
